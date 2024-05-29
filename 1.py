@@ -1,6 +1,6 @@
 def p1():
     import json
-    with open('for10/файл1.json', encoding='utf-8') as f:
+    with open('doc.json', encoding='utf-8') as f:
         file = json.load(f)
     for product in file['products']:
         print('Название: ', product['name'])
@@ -14,7 +14,7 @@ def p1():
 
 def p2():
     import json
-    with open('for10/файл1.json', encoding='utf-8') as f:
+    with open('doc.json', encoding='utf-8') as f:
         file = json.load(f)
 
     new = {}
@@ -24,10 +24,10 @@ def p2():
     new['available'] = input('Товар в наличии? ').lower() == 'да'
     file['products'].append(new)
 
-    with open('for10/файл1.json', 'w', encoding='utf-8') as f:
+    with open('doc.json', 'w', encoding='utf-8') as f:
         json.dump(file, f, ensure_ascii = False, indent = 4)
 
-    with open('for10/файл1.json', encoding='utf-8') as f:
+    with open('doc.json', encoding='utf-8') as f:
         file = json.load(f)
     for product in file['products']:
         print('Название: ', product['name'])
@@ -43,7 +43,7 @@ def p3():
 
     import json
     file = {}
-    with open('for10/en-ru.txt', 'r', encoding = 'utf-8') as f:
+    with open('en-ru.txt', 'r', encoding = 'utf-8') as f:
         for line in f:
             en_word, ru_words = line.strip().split('-')
             for ru_word in ru_words.split(','):
@@ -52,10 +52,12 @@ def p3():
                 else:
                     file[ru_word].append(en_word)
 
-    with open('for10/ru-en.txt', 'w', encoding='utf-8') as f:
+    with open('ru-en.txt', 'w', encoding='utf-8') as f:
         for ru_word in sorted(file.keys()):
             en_words=','.join(sorted(file[ru_word]))
             f.write(f'{ru_word}-{en_words}\n')
 
-    with open('for10/en-ru.json', 'w', encoding='utf-8') as f:
+    with open('en-ru.json', 'w', encoding='utf-8') as f:
         json.dump(file, f, ensure_ascii=False, indent=4)
+
+p3()
